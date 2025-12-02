@@ -1,0 +1,5 @@
+## Interface: 110200
+## SavedVariables: MyAddonDB
+
+WeeklyCheckList.lua
+WeeklyCheckList.xml

@@ -1,0 +1,29 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+
+    <Button name="WeeklyCheckList" parent="Minimap" inherits="MinimapButtonTemplate">
+        <Size>
+            <AbsDimension x="32" y="32" />
+        </Size>
+        <Anchors>
+            <Anchor point="TOPLEFT" />
+        </Anchors>
+        <Scripts>
+            <OnLoad>
+                WeeklyCheckList_OnLoad(self);
+            </OnLoad>
+            <OnEnter>
+                WeeklyCheckList_OnEnter(self);
+            </OnEnter>
+            <OnLeave>
+                WeeklyCheckList_OnLeave(self);
+            </OnLeave>
+            <OnClick>
+                WeeklyCheckList_OnClick(self, button);
+            </OnClick>
+            <OnEvent>
+                WeeklyCheckList_OnEvent(self, event)
+            </OnEvent>
+        </Scripts>
+    </Button>
+
+</Ui>
