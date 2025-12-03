@@ -16,11 +16,33 @@ trackedQuests = {
 	Karesh = { 91093, 85460 }
 }
 
+
+
+local function GetWeeklyResetTime()
+	return C_DateAndTime.GetSecondsUntilWeeklyReset() + time()
+end
+
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("PLAYER_LOGIN")
 
 frame:SetScript("OnEvent", function(self, event, ...)
 	if event == "PLAYER_LOGIN" then
+		MyAddonDB = MyAddonDB or {}
+		MyAddonDB.questStatus = MyAddonDB.questStatus or {}
+		MyAddonDB.lastReset = MyAddonDB.lastReset or 0
+
+		local nextReset = GetWeeklyResetTime()
+
+		-- If stored reset time is older than the current one → reset week data
+		if MyAddonDB.lastReset < time() then
+			print("|cff00ff00WeeklyCheckList: Weekly reset detected. Progress cleared.|r")
+			MyAddonDB.questStatus = {}
+		end
+
+		-- Save the next reset timestamp
+		MyAddonDB.lastReset = nextReset
+
+		-- Re-check quests for the current character
 		CheckTrackedQuests()
 	end
 end)
